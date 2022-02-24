@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -24,7 +24,7 @@ Route::get('/admin', [App\Http\Controllers\HomeController::class, 'admin'])->nam
 
 Route::get('/home/mail', [App\Http\Controllers\MailController::class, 'home'])->name('home.mails');
 Route::get('/mails', [App\Http\Controllers\MailController::class, 'index'])->name('mails');
-Route::post('/mail', [App\Http\Controllers\MailController::class, 'index'])->name('mail.create');
+Route::post('/mail', [App\Http\Controllers\MailController::class, 'create'])->name('mail.create');
 
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
 Route::get('/user/delete/{user_id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.delete');

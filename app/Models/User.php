@@ -40,11 +40,11 @@ class User extends Authenticatable
     }
 
     public function sended_mails() {
-        return $this->hasMany(Mail::class, 'sender_id');
+        return $this->hasMany(Mail::class, 'sender_id', 'id');
     }
 
     public function received_mails() {
-        return $this->hasMany(Mail::class, 'recipient_id');
+        return $this->hasMany(Mail::class, 'recipient_id', 'id');
     }
 
     public function getAgeAttribute() {

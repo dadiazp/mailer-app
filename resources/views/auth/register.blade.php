@@ -13,7 +13,7 @@
             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}<span class="text-danger">*</span></label>
 
             <div class="col-md-6">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autofocus>
 
                 @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
             <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
 
             <div class="col-md-6">
-                <input id="phone" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autofocus>
+                <input id="phone" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" autofocus>
 
                 @error('phone_number')
                     <span class="invalid-feedback" role="alert">
@@ -69,9 +69,9 @@
             <label for="country" class="col-md-4 col-form-label text-md-end">{{ __('País') }}<span class="text-danger">*</span></label>
             <div class="col-md-6">
                 <select id="country" name="country_id" class="form-control @error('country_id') is-invalid @enderror" required autofocus>
-                    <option value="-">Seleccione un país</option>
+                    <option value="0">Seleccione un país</option>
                     @foreach($countries as $country)
-                        <option {{ ($country->id == old('country_id')) ? 'selected': '' }} value="{{$country->id}}">{{$country->name}}</option>
+                        <option value="{{$country->id}}">{{$country->name}}</option>
                     @endforeach
                 </select>
 
@@ -117,7 +117,7 @@
             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}<span class="text-danger">*</span></label>
 
             <div class="col-md-6">
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required>
 
                 @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -165,19 +165,20 @@
         const user = $(e.relatedTarget).attr("data") ? JSON.parse($(e.relatedTarget).attr("data")) : undefined;
 
             if (user) {
+                console.log(user)
                 $("#id").val(user.id);
                 $("#name").val(user.name);
                 $("#id_number").val(user.id_number).attr('readonly', 'readonly');
                 $("#birthday").val(user.birthday);
                 $("#phone").val(user.phone_number);
 
-                $("#country option[value=" + user.country_id + "]").attr('selected', 'selected');
+                $("#country").val(user.country_id.toString())
 
                 getStatesByCountry(user.country_id, user.state_id);
                 getCitiesByState(user.state_id, user.city_id);
 
-                $("#state option[value=" + user.state_id + "]").attr('selected', 'selected');
-                $("#city option[value=" + user.city_id + "]").attr('selected', 'selected');
+                $("#state").val(user.state_id.toString())
+                $("#city").val(user.city_id.toString())
 
                 $("#email").val(user.email).attr('readonly', 'readonly');
                 $("#password").val(user.password);

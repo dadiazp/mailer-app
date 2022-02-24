@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 table-responsive-lg">
             <table id='users' class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -58,34 +58,6 @@
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
 <script>
-    $("#add").on('click', function(){
-        $("#id").val("");
-        $("#name").val("");
-        $("#id_number").val("").removeAttr("readonly");
-        $("#birthday").val("");
-        $("#phone").val("");
-
-        $('#country option').each(function() {
-            if (this.text !== 'Seleccione un país') {
-                this.remove();
-            }
-        });
-
-        $('#state option').each(function() {
-            if (this.text !== '-') {
-                this.remove();
-            }
-        });
-
-        $('#city option').each(function() {
-            if (this.text !== '-') {
-                this.remove();
-            }
-        });
-
-        $("#email").val("").removeAttr("readonly");
-    })
-   
     $(document).ready(function() {
         $('#users').DataTable({
             'serverSide': true,
@@ -99,7 +71,26 @@
                 {data: 'birthday'},
                 {data: 'age'},
                 {data: 'btn'}
-            ]
+            ],
+            "language": {
+                "info": "_TOTAL_ registros",
+                "search": "Buscar",
+                "paginate": {
+                    "next": "Siguiente",
+                    "previous": "Anterior",
+                },
+                "lengthMenu": 'Mostrar <select >'+
+                            '<option value="10">10</option>'+
+                            '<option value="30">30</option>'+
+                            '<option value="-1">Todos</option>'+
+                            '</select> registros',
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "emptyTable": "No hay datos",
+                "zeroRecords": "No hay coincidencias", 
+                "infoEmpty": "",
+                "infoFiltered": ""
+            }
         });
     } );
     

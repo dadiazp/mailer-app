@@ -23,6 +23,7 @@ class UserController extends Controller
                                 $sql = "TIMESTAMPDIFF(YEAR,users.birthday,CURDATE()) like ?";
                                 $query->whereRaw($sql, ["%{$keyword}%"]);
                             })
+                           ->orderColumn('age', '-birthday $1')
                            ->addColumn('btn', 'actions')
                            ->rawColumns(['btn'])
                            ->toJson();

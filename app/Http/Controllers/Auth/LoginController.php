@@ -44,6 +44,6 @@ class LoginController extends Controller
             return route('admin');
         }
 
-        return route('home');
+        return route('home.mails');
     }
 }

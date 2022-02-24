@@ -33,5 +33,29 @@
         }
     @endif
 
+    $('#registerModal').on('hide.bs.modal', function(e){
+        $("#id").val("");
+        $("#name").val("");
+        $("#id_number").val("").removeAttr("readonly");
+        $("#birthday").val("");
+        $("#phone").val("");
+
+        $('#country').val("0");
+
+        $('#state option').each(function() {
+            if (this.text !== '-') {
+                this.remove();
+            }
+        });
+
+        $('#city option').each(function() {
+            if (this.text !== '-') {
+                this.remove();
+            }
+        });
+
+        $("#email").val("").removeAttr("readonly");
+    });
+
   </script>
 @endpush

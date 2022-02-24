@@ -61,7 +61,7 @@ class RegisterController extends Controller
                     return $fail('El usuario debe ser mayor a 18 años de edad');
                 };
             }],
-            'phone_number' => ['sometimes', 'string', 'min:10', 'max:10'],
+            'phone_number' => $data['phone_number'] != null ? ['sometimes', 'required', 'string', 'min:10', 'max:10'] : [],
             'city_id' => ['required']
         ];
 
