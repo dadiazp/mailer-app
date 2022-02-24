@@ -22,12 +22,12 @@ class UsersTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'name' => 'Daniel',
-                'email' => 'dadiazp98@gmail.com',
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
                 'id_number' => '12345678',
                 'password' => '$2y$10$E79G7zQgLuKgF5ujCiQXouyodzap.frWgCeSgZdXJ.k65B9kN4Y.6',
                 'birthday' => '1998-02-03',
-                'phone_number' => '555555',
+                'phone_number' => '1234567890',
                 'is_admin' => 1,
                 'is_active' => 1,
                 'remember_token' => NULL,
