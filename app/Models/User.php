@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'id_number', 'birthday', 'is_admin', 'city_id'
     ];
 
     /**
@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
 
     /**
@@ -37,4 +37,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function city() {
+        return $this->belongsTo(City::class);
+    }
+
+    public function sended_mails() {
+        return $this->hasMany(Mail::class, 'sender_id');
+    }
+
+    public function received_mails() {
+        return $this->hasMany(Mail::class, 'recipient_id');
+    }
 }
