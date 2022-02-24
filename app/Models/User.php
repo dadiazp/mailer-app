@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -17,17 +18,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'id_number', 'birthday', 'is_admin', 'city_id'
+        'name', 'email', 'password', 'id_number', 'birthday', 'phone_number', 'is_admin', 'is_active', 'city_id'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -36,6 +29,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    protected $appends = [
+        'age'
     ];
 
     public function city() {
@@ -48,5 +45,9 @@ class User extends Authenticatable
 
     public function received_mails() {
         return $this->hasMany(Mail::class, 'recipient_id');
+    }
+
+    public function getAgeAttribute() {
+        return Carbon::parse($this->birthday)->age;
     }
 }

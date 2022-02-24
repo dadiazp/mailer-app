@@ -20,7 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('id_number')->unique();
             $table->string('password');
             $table->date('birthday');
+            $table->string('phone_number')->nullable();
             $table->boolean('is_admin')->default(0); // 0 = client && 1 = admin
+            $table->boolean('is_active')->default(1);
             $table->rememberToken();
             $table->timestamps();
             $table->foreignId('city_id')->constrained('cities');

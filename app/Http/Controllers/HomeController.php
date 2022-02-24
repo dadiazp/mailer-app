@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Country;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function admin() {
+        $countries = Country::all();
+        $data['countries'] = $countries;
+
+        return view('admin', $data);
     }
 }

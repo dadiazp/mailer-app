@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class States extends Model
+class State extends Model
 {
     /**
      * The attributes that are mass assignable.

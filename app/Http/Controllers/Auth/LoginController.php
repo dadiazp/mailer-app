@@ -41,9 +41,9 @@ class LoginController extends Controller
 
     public function redirectPath() {
         if (Auth::user()->is_admin) {
-            return '/admin';
+            return route('admin');
         }
 
-        return '/home';
+        return route('home');
     }
 }
